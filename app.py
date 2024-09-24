@@ -209,7 +209,7 @@ HTML_TEMPLATE = '''
             width: 100%;
             height: 200px;
             padding: 15px;
-            font-size: 25px;
+            font-size: 30px;
             font-family: 'Iceland', sans-serif;
             border: 2px solid #00FF9C;
             border-radius: 8px;
@@ -221,7 +221,7 @@ HTML_TEMPLATE = '''
         }
         textarea::placeholder {
             color: #00FF9C;
-            font-size: 25px;
+            font-size: 30px;
             opacity: 0.8;
         }
         button {
