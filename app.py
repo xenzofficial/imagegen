@@ -380,7 +380,7 @@ def index():
             return render_template_string(HTML_TEMPLATE, images=path)
         except:
             return render_template_string(HTML_TEMPLATE, images=["https://media.tenor.com/IHdlTRsmcS4AAAAM/404.gif"])
-    return render_template_string(HTML_TEMPLATE, images=["https://th.bing.com/th/id/OIG1.LkdpsS76gawWdWo8hQLQ?w=173&h=173&c=6&r=0&o=5&dpr=1.7&pid=ImgGn"])
+    return render_template_string(HTML_TEMPLATE, images=["https://i.ibb.co.com/Db7pjnc/IMG-20240924-230831.jpg"])
 
 @app.route('/api', methods=['GET'])
 def api():
