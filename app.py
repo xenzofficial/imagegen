@@ -209,7 +209,7 @@ HTML_TEMPLATE = '''
             width: 100%;
             height: 200px;
             padding: 15px;
-            font-size: 13px;
+            font-size: 16px;
             font-family: 'Iceland', sans-serif;
             border: 2px solid #00FF9C;
             border-radius: 8px;
