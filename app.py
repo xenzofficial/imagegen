@@ -503,7 +503,7 @@ def gpt():
     q = request.args.get('q')
     if not q:
         return jsonify({"error": "Parameter 'q' tidak ditemukan."}), 400
-    return chat(chat=q, type="text")
+    return jsonify({"result": chat(chat=q, type="text")})
 
 
 @app.route("/create-prompt", methods=["GET", "POST"])
