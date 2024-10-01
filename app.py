@@ -213,7 +213,7 @@ HTML_TEMPLATE = '''
             width: 100%;
             height: 250px;
             padding: 15px;
-            font-size: 30px;
+            font-size: 25px;
             font-family: 'Iceland', sans-serif;
             border: 2px solid #00FF9C;
             border-radius: 8px;
@@ -421,34 +421,58 @@ def convertImage(image):
     return encoded_string.decode("utf-8")
 
 
-def chat(image):
+def chat(chat="", type=""):
     base_url = "https://www.blackbox.ai/api/chat"
-    data = json.dumps({
-    "messages": [{
-      "role": "user",
-      "content": "Buatkan prompt bing untuk gambar ini menggunakan bahasa inggris yang sangat spesifik, berikan prompt saja jangan pake penjelasan",
-      "data": {
-          "imageBase64": "data:image/jpeg;base64,"+convertImage(image),
-          "fileText": " "
-        },
-      "id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))
-    }],
-    "id": "PFRhj9u",
-    "previewToken": None,
-    "userId": None,
-    "codeModelMode": True,
-    "agentMode": {},
-    "trendingAgentMode": {},
-    "isMicMode": False,
-    "maxTokens": 50000,
-    "isChromeExt": False,
-    "githubToken": None,
-    "clickedAnswer2": False,
-    "clickedAnswer3": False,
-    "clickedForceWebSearch": False,
-    "visitFromDelta": False,
-    "mobileClient": False
-    })
+    if type == "text":
+	    data = json.dumps({
+	    "messages": [{
+	      "role": "user",
+	      "content": chat,
+	      "id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))
+	    }],
+	    "id": "PFRhj9u",
+	    "previewToken": None,
+	    "userId": None,
+	    "codeModelMode": True,
+	    "agentMode": {},
+	    "trendingAgentMode": {},
+	    "isMicMode": False,
+	    "maxTokens": 50000,
+	    "isChromeExt": False,
+	    "githubToken": None,
+	    "clickedAnswer2": False,
+	    "clickedAnswer3": False,
+	    "clickedForceWebSearch": False,
+	    "visitFromDelta": False,
+	    "mobileClient": False
+	    })
+    if type == "image":
+	    data = json.dumps({
+	    "messages": [{
+	      "role": "user",
+	      "content": "Buatkan prompt bing untuk gambar ini menggunakan bahasa inggris yang sangat spesifik, berikan prompt saja jangan pake penjelasan",
+	      "data": {
+	          "imageBase64": "data:image/jpeg;base64,"+convertImage(chat),
+	          "fileText": " "
+	        },
+	      "id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))
+	    }],
+	    "id": "PFRhj9u",
+	    "previewToken": None,
+	    "userId": None,
+	    "codeModelMode": True,
+	    "agentMode": {},
+	    "trendingAgentMode": {},
+	    "isMicMode": False,
+	    "maxTokens": 50000,
+	    "isChromeExt": False,
+	    "githubToken": None,
+	    "clickedAnswer2": False,
+	    "clickedAnswer3": False,
+	    "clickedForceWebSearch": False,
+	    "visitFromDelta": False,
+	    "mobileClient": False
+	    })
     headers = {
     'User-Agent': "Mozilla/5.0 (Linux; Android 10; K) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/128.0.0.0 Mobile Safari/537.36",
     'Accept-Encoding': "gzip, deflate",
@@ -467,6 +491,14 @@ def chat(image):
     }
     response = requests.post(base_url, data=data, headers=headers)
     return response.text
+
+@app.route('/gpt', methods=['GET'])
+def gpt():
+    q = request.args.get('q')
+    if not q:
+        return jsonify({"error": "Parameter 'q' tidak ditemukan."}), 400
+    return chat(chat=q, type="text")
+
 
 @app.route("/create-prompt", methods=["GET", "POST"])
 def create_prompt():
@@ -599,7 +631,7 @@ def create_prompt():
 """
     if request.method == "POST":
         image_path = request.files["image"]
-        response = chat(image_path)
+        response = chat(chat = image_path, type = "image")
         return render_template_string(html, response=response)
     return render_template_string(html)
 
