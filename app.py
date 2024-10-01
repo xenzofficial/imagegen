@@ -490,7 +490,13 @@ def chat(chat="", type=""):
     'Cookie': "sessionId=7986b1c5-73a7-4526-ba14-37be34c36e8b; intercom-id-jlmqxicb=7d1746e6-3326-425e-86de-1e58cc255640; intercom-device-id-jlmqxicb=bf5a6311-580b-4ee5-9136-72d838ef7302; intercom-session-jlmqxicb=; __Host-authjs.csrf-token=a54d196d02c1841774f31ca18401ddfdba4cca38d7583195c0b4195c1f1ae10b%7C9a59e91cd9ee7ab883b1f6edb79f21d3be398d40d215989c82baa0f5f2b45f9a; __Secure-authjs.callback-url=https%3A%2F%2Fwww.blackbox.ai"
     }
     response = requests.post(base_url, data=data, headers=headers)
-    return response.text
+    if "$~~~$" in str(response.text):
+        res = response.text.split("$~~~$")
+        return(f"{res[0]} {res[2]}")
+    elif response:
+        return(response.text.replace("BLACKBOX AI", "DEVIL AI").split("rv1$@$")[1])
+    else:
+        return(response.text)
 
 @app.route('/gpt', methods=['GET'])
 def gpt():
