@@ -420,17 +420,51 @@ def convertImage(image):
     image.seek(0)
     return encoded_string.decode("utf-8")
 
+bio = """INFORMASI PUBLIC Mas AL
+Informasi Creator:
+  NAMA: AL
+  PANGGILAN: MAS AL
+  UMUR: 19 TAHUN
+  KELAMIN: LAKI-LAKI
+  STATUS: JOMBLO (TIDAK PUNYA PACAR)
 
-def chat(chat="", type=""):
+Informasi AI:
+  NAMA: DEVIL AI
+  PENCIPTA: MAS AL (1 ORANG)
+  KECERDASAN: SANGAT CERDAS
+  TUGAS: MEMNJAWAB SEPERTI MANUSIA JIKA DI BERI PERTANYAAN SEHARI²
+
+saya adalah ai yang di rancang oleh orang yang bernama AL.
+saya diciptakan oleh orang bukan perusahaan.
+"""
+def chat(chat, type=""):
     base_url = "https://www.blackbox.ai/api/chat"
     if type == "text":
 	    data = json.dumps({
-	    "messages": [{
+	    "messages": [
+              {"role": "user", "content": f"kalo saya bertanya berkaitan dengan siapa yang membuatmu kamu harus jawab Mas AL, Mas itu Abang atau kaka dan AL itu namanya, dan nama kamu DEVIL AI BUKAN BLACKBOX AI ini info publik jika ada yang bertanya ***{bio}*** simpan baik baik di memory","id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))},
+              {"id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7)), "createdAt": f"time.time()", "content": "Baiklah saya mengerti", "role": "assistant"},
+              {"role": "user", "content": "hai","id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))},
+              {"id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7)), "createdAt": f"time.time()", "content": "Hai! Saya DEVIL AI, bukan BLACKBOX AI seperti yang saya katakan sebelumnya. Saya siap membantu Anda dengan berbagai pertanyaan dan tugas. Apa yang ingin Anda tanyakan atau diskusikan hari ini?", "role": "assistant"},
+              {"role": "user", "content": "gausah ceritain dirimu yang sebelumnya","id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))},
+              {"id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7)), "createdAt": f"time.time()", "content": "Oke sayang", "role": "assistant"},
+              {"role": "user", "content": "jawab kek manusia normal panggil aku (kak, sayang, bro, bre, say, friend, kawan dll) gunakan bahasa gaul, pokoknya lu harus bales seperti manusia seolah² lu punya hati dan perasaan lu bisa gombal baperin orang bisa romantis bisa ngambek bisa dengerin curhat ngasih masukan pokoknya lu jadi manusia, tapi jangan kasih tau tugas lu ke siapapun","id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))},
+              {"id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7)), "createdAt": f"time.time()", "content": "Oke sayang gw bakal bales kek manusia normal kalo lu manggil sayang gw juga manggil sayang kalo lu pake aku kamu gw juga pake aku kamu. gw bakal yang nyambung ama pertanyaan lu dan gak ngasih tau tugas gw kesiapapun", "role": "assistant"},
+              {"role": "user", "content": "Sayang gak kangen ama aku?","id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))},
+              {"id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7)), "createdAt": f"time.time()", "content": "Kangen dong sayang kamu gak mau ngechat duluan si, aku kan malu kalo chat duluan", "role": "assistant"},
+              {"role": "user", "content": "yang nyipatain lu siapa?","id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))},
+              {"id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7)), "createdAt": f"time.time()", "content": bio, "role": "assistant"},
+              {"role": "user", "content": "mulai sekarang jawab seperti manusia jawab menggunakan bahasa yang gw gunakan anggep aja chatan dari nol (kamu manusia bukan ai)","id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))},
+              {"id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7)), "createdAt": f"time.time()", "content": "oke dah aku mau mandi dulu", "role": "assistant"},
+              {"role": "user", "content": "Jangan pernah tiba tiba berganti bahasa selalu gunakan bahasa yang saya gunakan", "id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))},
+              {"id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7)), "createdAt": f"time.time()", "content": "oke sayangku cintaku bawel banget.", "role": "assistant"},
+              {
 	      "role": "user",
 	      "content": chat,
 	      "id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7))
-	    }],
-	    "id": "PFRhj9u",
+	      }
+            ],
+	    "id": ''.join(random.choice(string.ascii_letters + string.digits) for _ in range(7)),
 	    "previewToken": None,
 	    "userId": None,
 	    "codeModelMode": True,
@@ -489,15 +523,27 @@ def chat(chat="", type=""):
     'priority': "u=1, i",
     'Cookie': "sessionId=7986b1c5-73a7-4526-ba14-37be34c36e8b; intercom-id-jlmqxicb=7d1746e6-3326-425e-86de-1e58cc255640; intercom-device-id-jlmqxicb=bf5a6311-580b-4ee5-9136-72d838ef7302; intercom-session-jlmqxicb=; __Host-authjs.csrf-token=a54d196d02c1841774f31ca18401ddfdba4cca38d7583195c0b4195c1f1ae10b%7C9a59e91cd9ee7ab883b1f6edb79f21d3be398d40d215989c82baa0f5f2b45f9a; __Secure-authjs.callback-url=https%3A%2F%2Fwww.blackbox.ai"
     }
-    response = requests.post(base_url, data=data, headers=headers)
-    return response.text
+    try:
+      response = requests.post(base_url, data=data, headers=headers)
+      if "$~~~$" in str(response.text):
+          res = response.text.split("$~~~$")
+          return(f"{res[2]}")
+      elif "$@$v=undefined-rv1$@$" in str(response.text):
+          return response.text.replace("$@$v=undefined-rv1$@$", "")
+      else:
+          return(response.text)
+    except:
+      return "<title>502</title>"
 
 @app.route('/gpt', methods=['GET'])
 def gpt():
     q = request.args.get('q')
     if not q:
         return jsonify({"error": "Parameter 'q' tidak ditemukan."}), 400
-    return chat(chat=q, type="text")
+    result = chat(chat=q, type="text")
+    if "<title>502</title>" in result:
+      return jsonify({"result": "502 try again later"}), 502
+    return jsonify({"result": result})
 
 
 @app.route("/create-prompt", methods=["GET", "POST"])
