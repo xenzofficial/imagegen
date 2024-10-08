@@ -11,7 +11,7 @@ import base64
 import json
 import re
 import string
-
+os.system("rm -rf result")
 app = Flask(__name__)
 
 
