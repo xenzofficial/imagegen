@@ -585,10 +585,11 @@ def predik():
     result = result.replace("A.Bb Set Atau BB ", "A.Bb Set Atau BB \n").replace("Prediksi Macau 2D 3D 4D 13 Oktober 2024\n\n", "").replace("Forum prediksi Macau", "")
     clear = result.split("> ")
 
-    if int(jam) <= 13:return("`"+ clear[0] +"`\n\n"+clear[2])
-    if int(jam) <= 16:return("`"+ clear[0] +"`\n\n"+clear[3])
-    if int(jam) <= 19:return("`"+ clear[0] +"`\n\n"+clear[4])
-    if int(jam) <= 22:return("`"+ clear[0] +"`\n\n"+clear[5])
+    if int(jam) in range(0, 12):return("`"+ clear[0] +"`\n\n"+clear[2])
+    if int(jam) in range(13, 15):return("`"+ clear[0] +"`\n\n"+clear[3])
+    if int(jam) in range(16, 18):return("`"+ clear[0] +"`\n\n"+clear[4])
+    if int(jam) in range(19, 22):return("`"+ clear[0] +"`\n\n"+clear[5])
+    else:return "Prediksi Tidak Tersedia"
 
 @app.route('/prediksi-macau', methods=['GET'])
 def macau():
