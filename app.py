@@ -582,7 +582,7 @@ def predik():
     for string in formatted_strings:
         result += string+"\n"
 
-    result = result.replace("A.Bb Set Atau BB ", "A.Bb Set Atau BB \n").replace(f"Prediksi Macau 2D 3D 4D {tanggal.raplace('-', ' ')}\n\n", "").replace("Forum prediksi Macau", "").replace(f"{tanggal.split('-')[2]}\n", tanggal.split('-')[2])
+    result = result.replace("A.Bb Set Atau BB ", "A.Bb Set Atau BB \n").replace(f"Prediksi Macau 2D 3D 4D {tanggal.replace('-', ' ')}\n\n", "").replace("Forum prediksi Macau", "").replace(f"{tanggal.split('-')[2]}\n", tanggal.split('-')[2])
     clear = result.split("> ")
 
     if int(jam) in range(0, 12):return("`"+ clear[0] +"`\n\n"+clear[2])
