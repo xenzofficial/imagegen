@@ -11,6 +11,7 @@ import base64
 import json
 import re
 import string
+from datetime import datetime
 app = Flask(__name__)
 
 
@@ -543,6 +544,54 @@ def gpt():
     if "<title>502</title>" in result:
       return jsonify({"result": "502 try again later"}), 502
     return jsonify({"result": result})
+
+def predik():
+    now = datetime.now()
+    months = [
+    "Januari", "Februari", "Maret", "April", "Mei", "Juni",
+    "Juli", "Agustus", "September", "Oktober", "November", "Desember"
+    ]
+
+    tanggal = f"{now.day}-{months[now.month - 1]}-{now.year}"
+    jam = now.strftime("%H")
+
+
+    data = requests.get("https://paramountpetals-tangerang.co.id/prediksi-macau-2d-3d-4d-"+tanggal).text
+    patterns = [
+    r'<p><strong>(.*?)<\/strong><\/p>',
+    r'<strong>(.*?)<\/strong>'
+    ]
+
+    extracted_strings = []
+
+    for pattern in patterns:
+        matches = re.findall(pattern, data, re.DOTALL)
+        cleaned_matches = [re.sub(r'<.*?>', '', match) for match in matches]
+        extracted_strings.extend(cleaned_matches)
+
+    formatted_strings = []
+    for string in extracted_strings:
+        if "JAM TUTUP" in string:
+            formatted_strings.append(f"\n> {string.strip()}")
+        else:
+            formatted_strings.append(string.strip())
+
+    result = ""
+    for string in formatted_strings:
+        result += string+"\n"
+
+    result = result.replace("A.Bb Set Atau BB ", "A.Bb Set Atau BB \n").replace("Prediksi Macau 2D 3D 4D 13 Oktober 2024\n\n", "").replace("Forum prediksi Macau", "")
+    clear = result.split("> ")
+
+    if int(jam) <= 13:return("`"+ clear[0] +"`\n\n"+clear[2])
+    if int(jam) <= 16:return("`"+ clear[0] +"`\n\n"+clear[3])
+    if int(jam) <= 19:return("`"+ clear[0] +"`\n\n"+clear[4])
+    if int(jam) <= 22:return("`"+ clear[0] +"`\n\n"+clear[5])
+
+@app.route('/prediksi-macau', method=['GET'])
+def macau():
+	result = predik()
+	return jsonify({"result": result})
 
 
 @app.route("/create-prompt", methods=["GET", "POST"])
