@@ -588,7 +588,7 @@ def predik():
     if int(jam) <= 19:return("`"+ clear[0] +"`\n\n"+clear[4])
     if int(jam) <= 22:return("`"+ clear[0] +"`\n\n"+clear[5])
 
-@app.route('/prediksi-macau', method=['GET'])
+@app.route('/prediksi-macau', methods=['GET'])
 def macau():
 	result = predik()
 	return jsonify({"result": result})
