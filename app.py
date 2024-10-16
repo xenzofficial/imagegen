@@ -597,7 +597,7 @@ def macau():
 	return jsonify({"result": result})
 
 def getAsupan():
-	list = [
+    list = [
     "serbatembem",
     "cewek.pargoy74",
     "dly.chan",
