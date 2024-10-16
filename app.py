@@ -615,7 +615,7 @@ def getAsupan():
     except:
       return "error"
 
-@app.route("asupan", methods=["GET"])
+@app.route("/asupan", methods=["GET"])
 def asupan():
 	result = getAsupan()
 	return jsonify({"result": result})
