@@ -596,6 +596,30 @@ def macau():
 	result = predik()
 	return jsonify({"result": result})
 
+def getAsupan():
+	list = [
+    "serbatembem",
+    "cewek.pargoy74",
+    "dly.chan",
+    "respect.host",
+    "gabuttttt.aja3",
+    "_cewehiperrrr",
+    "ameliacharlie6",
+    "raya__nandita",
+    "parahgoyy"
+    ]
+    try:
+      data = requests.get("https://widipe.com/download/asupantt?username="+random.choice(list))
+      result = json.loads(data.text)["result"]["data"]
+      return(random.choice(result)["play"])
+    except:
+      return "error"
+
+@app.route("asupan", methods=["GET"])
+def asupan():
+	result = getAsupan()
+	return jsonify({"result": result})
+
 
 @app.route("/create-prompt", methods=["GET", "POST"])
 def create_prompt():
