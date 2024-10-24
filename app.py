@@ -297,7 +297,7 @@ HTML_TEMPLATE = '''
     </style>
 </head>
 <body>
-    <video autoplay loop>
+    <video autoplay loop playsinline>
         <source src="https://web-production-86c2.up.railway.app/asupan" type="video/mp4">
         Your browser does not support the video tag.
     </video>
