@@ -618,7 +618,16 @@ def getAsupan():
 @app.route("/asupan", methods=["GET"])
 def asupan():
 	result = getAsupan()
-	return jsonify({"result": result})
+	try:
+		video_response = requests.get(result, stream=True, allow_redirects=True)
+		video_response.raise_for_status()
+		return Response(
+			video_response.iter_content(chunk_size=10*1024),
+			content_type=video_response.headers['Content-Type']
+		)
+	except Exception as e:
+		return json.dumps({"status": "error", "message": str(e)}), 500, {'Content-Type': 'application/json'}
+
 
 
 @app.route("/create-prompt", methods=["GET", "POST"])
