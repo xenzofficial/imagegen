@@ -287,7 +287,11 @@ HTML_TEMPLATE = '''
         section.main2 ul li{list-style-type:none}
     </style>
 </head>
-<body background="https://random-image-pepebigotes.vercel.app/api/random-image">
+<body>
+    <video autoplay loop>
+        <source src="https://web-production-86c2.up.railway.app/asupan" type="video/mp4">
+        Your browser does not support the video tag.
+    </video>
     <h1>Text To Image</h1>
     <form method="post">
         <textarea type="text" name="prompt" placeholder="Enter your prompt here..." required>{{ request.form['prompt'] if request.form.get('prompt') else '' }}</textarea>
