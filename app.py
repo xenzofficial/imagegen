@@ -327,6 +327,7 @@ HTML_TEMPLATE = '''
         </headers>
     </div>
     <script>
+        document.querySelector('video').play();
         window.onload = function() {
             const promptText = sessionStorage.getItem('promptText');
             if (promptText) {
